@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Role;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/tes', function () {
     return view('layouts.stisla.content');
 });
+
+Route::get('/role', [Role::class, 'index']);
