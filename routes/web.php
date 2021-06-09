@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Home;
 use App\Http\Controllers\Role;
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +23,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/tes', function () {
-    return view('layouts.stisla.content');
+// user harus login terlebih dahulu
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/home', [Home::class, 'index'])->name('home');
 });
+
 
 Route::get('/role', [Role::class, 'index']);
