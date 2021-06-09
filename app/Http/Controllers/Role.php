@@ -27,6 +27,8 @@ class Role extends Controller
         RoleSpatie::create(['name' => 'siswa non-aktif']);
         RoleSpatie::create(['name' => 'alumni']);
         RoleSpatie::create(['name' => 'tata usaha']);
+        RoleSpatie::create(['name' => 'siswa baru']);
+        RoleSpatie::create(['name' => 'panitia ppdb']);
 
         return "role berhasil dibuat";
     }
