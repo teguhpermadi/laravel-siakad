@@ -1,4 +1,21 @@
-<x-app-layout>
+@extends('layouts.stisla.master')
+
+@section('content')
+    <section class="section">
+        <div class="section-header">
+            <h1>Profil</h1>
+        </div>
+
+        <div class="section-body">
+            @if (Laravel\Fortify\Features::canUpdateProfileInformation())
+                @livewire('profile.update-profile-information-form')
+
+                <x-jet-section-border />
+            @endif
+        </div>
+    </section>
+@endsection
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profile') }}
@@ -42,4 +59,4 @@
             @endif
         </div>
     </div>
-</x-app-layout>
+</x-app-layout> --}}

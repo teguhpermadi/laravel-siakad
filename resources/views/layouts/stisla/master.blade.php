@@ -13,7 +13,7 @@
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!-- CSS Libraries -->
-
+    @livewireStyles
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ url('stisla/css/style.css') }}">
     <link rel="stylesheet" href="{{ url('stisla/css/components.css') }}">
@@ -57,7 +57,7 @@
     <script src="{{ url('stisla/js/stisla.js') }}"></script>
 
     <!-- JS Libraies -->
-
+    @livewireScripts
     <!-- Template JS File -->
     <script src="{{ url('stisla/js/scripts.js') }}"></script>
     <script src="{{ url('stisla/js/custom.js') }}"></script>

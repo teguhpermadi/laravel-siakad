@@ -1,9 +1,13 @@
 <x-jet-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Profile Information') }}
+        {{-- {{ __('Profile Information') }} --}}
+        <h2 class="section-title">Hi, {{ $this->user->name }}!</h2>
+        <p class="section-lead">
+            Change information about yourself on this page.
+        </p>
     </x-slot>
 
-    <x-slot name="description">
+    <x-slot name="row">
         {{ __('Update your account\'s profile information and email address.') }}
     </x-slot>
 
