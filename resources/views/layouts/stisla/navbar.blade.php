@@ -193,6 +193,7 @@
           </div>
         </div>
       </li>
+      
       @livewire('navbar-menu')
       
     </ul>
