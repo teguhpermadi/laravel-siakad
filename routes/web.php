@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Home;
 use App\Http\Controllers\Role;
+use App\Http\Controllers\UserLocation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +31,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
 Route::get('/role', [Role::class, 'index']);
+Route::get('/location', [UserLocation::class, 'index']);
