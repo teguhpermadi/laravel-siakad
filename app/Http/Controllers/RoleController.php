@@ -17,7 +17,7 @@ class RoleController extends Controller
     {
        //menampilkan semua data role
         $datas = Role::all();
-        return view('role.index',compact('datas'));
+        return view('pages.role.index',compact('datas'));
     }
 
     /**
