@@ -1,0 +1,17 @@
+@extends('layouts.stisla.master')
+
+@section('content')
+    <section class="section">
+        <div class="section-header">
+            <h1>Profil Sekolah</h1>
+        </div>
+
+        <div class="section-body">
+
+        </div>
+    </section>
+@endsection
+
+@section('js')
+    {{-- custom js per page --}}
+@endsection

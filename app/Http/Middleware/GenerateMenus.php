@@ -32,6 +32,11 @@ class GenerateMenus
             $dropdown->add('Menu 2');
             $dropdown->add('Menu 3');
 
+            $menu->add('Profil Sekolah', ['route'  => 'sekolah.index'])
+            ->append('</span>')
+            ->prepend('<i class="fas fa-school"></i> <span>')
+            ->link->attr(['class' => 'nav-link']);
+
         });
         
         return $next($request);
