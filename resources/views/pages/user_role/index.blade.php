@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.stisla.master')
 
 @section('content')
     <div class="container" id="app">
@@ -27,7 +27,7 @@
           </form>
 
           <section class="datas">
-            @include('user_role.list')
+            @include('pages.user_role.list')
             
           </section>
       </div>

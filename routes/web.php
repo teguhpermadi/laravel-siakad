@@ -36,16 +36,25 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 // Route::get('/role', [Role::class, 'index']);
 Route::get('/location', [UserLocation::class, 'index']);
-Route::get('/sekolah', [ProfilSekolahController::class, 'index'])->name('sekolah.index');
 
 
 //yang bisa mengakses routes di bawah hanya user yang telah login dan memiliki tipe superadmin
-Route::group(['middleware' => ['role:superadmin']], function () {    
+Route::group(['middleware' => ['role:super admin']], function () {    
     // sumber: https://sabithuraira.medium.com/laravel-membuat-fitur-pengelolaan-roles-permission-dg-spatie-7b5ab0c11176
     // ROUTE untuk pengaturan ROLE, PERMISSION dan USER ROLE
+    Route::resource('permission', PermissionController::class)->except(['show', 'edit', 'update', 'create', 'destroy']);
+    Route::resource('role', RoleController::class)->except(['show', 'edit', 'update', 'create', 'destroy']);
+    Route::resource('user_role', UserRoleController::class)->except(['show', 'create', 'store', 'destroy']);
 
-    Route::resource('permission',PermissionController::class)->except(['show', 'edit', 'update', 'create', 'destroy']);
-    Route::resource('role',RoleController::class)->except(['show', 'edit', 'update', 'create', 'destroy']);
-    Route::resource('user_role',UserRoleController::class)->except(['show', 'create', 'store', 'destroy']);
+});
 
+// profil sekolah
+// Route::group(['middleware' => ['permission:show profil sekolah']], function(){
+    Route::get('sekolah', [ProfilSekolahController::class, 'index'])->name('sekolah.index');
+// });
+
+Route::group(['middleware' => ['permission:create profil sekolah|edit profil sekolah']], function(){
+    Route::get('create-sekolah', [ProfilSekolahController::class, 'create'])->name('sekolah.create');
+    Route::get('edit-sekolah/{id}', [ProfilSekolahController::class, 'edit'])->name('sekolah.edit');
+    Route::get('update-sekolah/{id}', [ProfilSekolahController::class, 'update'])->name('sekolah.update');
 });

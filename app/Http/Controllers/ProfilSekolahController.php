@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProfilSekolah;
 use Illuminate\Http\Request;
 
 class ProfilSekolahController extends Controller
@@ -13,7 +14,16 @@ class ProfilSekolahController extends Controller
      */
     public function index()
     {
-        return view('pages.sekolah.index');
+        // $sekolah = [];
+        $data = ProfilSekolah::all();
+        if($data->count() > 0)
+        {
+            $sekolah = $data;
+        } else {
+            $sekolah = [];
+        };
+
+        return view('pages.sekolah.index', compact('sekolah'));
     }
 
     /**
@@ -23,7 +33,7 @@ class ProfilSekolahController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.sekolah.create');
     }
 
     /**
@@ -56,7 +66,9 @@ class ProfilSekolahController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bentukpendidikan = ['tk', 'sd', 'smp', 'sma', 'smk'];
+        $sekolah = ProfilSekolah::find($id);
+        return view('pages.sekolah.edit', compact('sekolah', 'bentukpendidikan'));
     }
 
     /**
@@ -68,7 +80,29 @@ class ProfilSekolahController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //validasi
+        $validated = $request->validate([
+            'namasekolah' => 'required',
+            // 'npsn' => '',
+            'bentukpendidikan' => 'required',
+            'alamat' => 'required',
+            'kelurahan' => 'required',
+            'kecamatan' => 'required',
+            'kota' => 'required',
+            'provinsi' => 'required',
+            'kodepos' => 'required',
+            // 'lintang' => '',
+            // 'bujur' => '',
+            // 'telp' => '',
+            // 'email' => '',
+            // 'website' => '',
+            // 'logo' => '',
+        ]);
+
+        // $profilSekolah->update($request->all());
+        $post = ProfilSekolah::find($id)->update($request->all()); 
+        // //  setelah berhasil mengubah data
+        return redirect()->route('sekolah.index')->with('success','Post updated successfully');
     }
 
     /**
