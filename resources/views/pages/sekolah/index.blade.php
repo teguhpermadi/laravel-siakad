@@ -8,7 +8,7 @@
 
     <div class="section-body">
 
-      @empty($sekolah)
+      {{-- @empty($sekolah) --}}
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title text-warning"><i class="fas fa-exclamation-circle float-left mr-2"></i> Peringatan</h5>
@@ -18,7 +18,7 @@
                 @endcan
             </div>
         </div>
-      @endempty
+      {{-- @endempty --}}
 
         @foreach ($sekolah as $s)
         <div class="card">

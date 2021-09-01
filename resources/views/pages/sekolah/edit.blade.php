@@ -7,9 +7,9 @@
     </div>
 
     <div class="section-body">
-        <form action="{{ route('sekolah.update', $sekolah->id) }}" method="put">
+        {{-- <form action="{{ route('sekolah.update', ['id' => $sekolah->id]) }}" method="PUT" enctype="multipart/form-data"> --}}
+            {!! Form::open(array('route' => ['sekolah.update', $sekolah->id], 'method' => 'put', 'files' => true )) !!}
             @csrf
-            @method('PUT')
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-3">
@@ -150,8 +150,10 @@
                             Email
                         </div>
                         <div class="col-md-8">
-                            <input type="text" name="email" class="form-control" value="{{ $sekolah->email }}">
-
+                            <input type="email" name="email" class="form-control" value="{{ $sekolah->email }}">
+                            @if ($errors->has('email'))
+                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                            @endif
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -159,7 +161,7 @@
                             Website
                         </div>
                         <div class="col-md-8">
-                            <input type="text" name="website" class="form-control" value="{{ $sekolah->website }}">
+                            <input type="url" name="website" class="form-control" value="{{ $sekolah->website }}">
 
                         </div>
                     </div>
@@ -168,8 +170,9 @@
                             Logo
                         </div>
                         <div class="col-md-8">
-                            <input type="text" name="logo" class="form-control" value="{{ $sekolah->logo }}">
-
+                            <img src="{{ $sekolah->logo }}" alt="logo sekolah" width="100px">
+                            <input type="file" name="logo" class="form-control-file">
+                            <input type="hidden" name="oldlogo" value="{{ $sekolah->logo }}">
                         </div>
                     </div>
                 </div>
@@ -178,7 +181,8 @@
                     <a class="btn btn-warning" href="{{ route('sekolah.index') }}">Batal</a>
                 </div>
             </div>
-        </form>
+        {{-- </form> --}}
+        {!! Form::close() !!}
     </div>
 </section>
 @endsection

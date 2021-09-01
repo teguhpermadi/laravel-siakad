@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProfilSekolah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilSekolahController extends Controller
 {
@@ -33,7 +34,8 @@ class ProfilSekolahController extends Controller
      */
     public function create()
     {
-        return view('pages.sekolah.create');
+        $bentukpendidikan = ['tk', 'sd', 'smp', 'sma', 'smk'];
+        return view('pages.sekolah.create', compact('bentukpendidikan'));
     }
 
     /**
@@ -44,7 +46,53 @@ class ProfilSekolahController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validasi
+        $validated = $request->validate([
+            'namasekolah' => 'required',
+            // 'npsn' => '',
+            'alamat' => 'required',
+            'kelurahan' => 'required',
+            'kecamatan' => 'required',
+            'kota' => 'required',
+            'provinsi' => 'required',
+            'kodepos' => 'required',
+            // 'lintang' => '',
+            // 'bujur' => '',
+            // 'telp' => '',
+            'email' => 'email:rfc,dns',
+            'website' => 'url',
+            // 'logo' => '',
+        ]);
+
+        // jika ada file logo yang diupload simpan di storage
+        if($request->file('file'))
+        {
+            $filename = time().'.'.$request->file->extension();
+            $request->file('file')->storeAs('public', $filename);
+        } else {
+            $filename = null;
+        }
+
+        // simpan data di db
+        $data = ProfilSekolah::create([
+            'namasekolah' => $request->namasekolah,
+            'npsn' => $request->npsn,
+            'bentukpendidikan' => $request->bentukpendidikan,
+            'alamat' => $request->alamat,
+            'kelurahan' => $request->kelurahan,
+            'kecamatan' => $request->kecamatan,
+            'kota' => $request->kota,
+            'provinsi' => $request->provinsi,
+            'kodepos' => $request->kodepos,
+            'lintang' => $request->lintang,
+            'bujur' => $request->bujur,
+            'telp' => $request->telp,
+            'email' => $request->email,
+            'website' => $request->website,
+            'logo' => $filename,
+        ]);
+
+        return redirect()->route('sekolah.index')->with('success','Post updated successfully');
     }
 
     /**
@@ -94,15 +142,24 @@ class ProfilSekolahController extends Controller
             // 'lintang' => '',
             // 'bujur' => '',
             // 'telp' => '',
-            // 'email' => '',
-            // 'website' => '',
+            'email' => 'email:rfc,dns',
+            'website' => 'url',
             // 'logo' => '',
         ]);
 
-        // $profilSekolah->update($request->all());
-        $post = ProfilSekolah::find($id)->update($request->all()); 
+        $data = ProfilSekolah::whereId($id)->first();
+        if(\File::exists('storage/'.$data->logo))
+        {
+
+        } else {
+
+        };
+        
+        
+        // return redirect('file')->with('success', 'Data is successfully updated');
+        // $post = ProfilSekolah::find($id)->update($input); 
         // //  setelah berhasil mengubah data
-        return redirect()->route('sekolah.index')->with('success','Post updated successfully');
+        // return redirect()->route('sekolah.index')->with('success','Post updated successfully');
     }
 
     /**

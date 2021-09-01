@@ -54,7 +54,15 @@ Route::group(['middleware' => ['role:super admin']], function () {
 // });
 
 Route::group(['middleware' => ['permission:create profil sekolah|edit profil sekolah']], function(){
-    Route::get('create-sekolah', [ProfilSekolahController::class, 'create'])->name('sekolah.create');
-    Route::get('edit-sekolah/{id}', [ProfilSekolahController::class, 'edit'])->name('sekolah.edit');
-    Route::get('update-sekolah/{id}', [ProfilSekolahController::class, 'update'])->name('sekolah.update');
+    Route::prefix('sekolah')->group(function () {
+        Route::get('/create', [ProfilSekolahController::class, 'create'])->name('sekolah.create');
+        Route::get('/edit/{id}', [ProfilSekolahController::class, 'edit'])->name('sekolah.edit');
+        Route::post('/store', [ProfilSekolahController::class, 'store'])->name('sekolah.store');
+        Route::put('/update/{id}', [ProfilSekolahController::class, 'update'])->name('sekolah.update');
+    });
+});
+
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    return "Cache is cleared";
 });
