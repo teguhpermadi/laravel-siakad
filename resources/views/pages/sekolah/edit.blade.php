@@ -170,9 +170,9 @@
                             Logo
                         </div>
                         <div class="col-md-8">
-                            <img src="{{ $sekolah->logo }}" alt="logo sekolah" width="100px">
-                            <input type="file" name="logo" class="form-control-file">
-                            <input type="hidden" name="oldlogo" value="{{ $sekolah->logo }}">
+                            <img src="{{ Storage::url("{$sekolah->logo}") }}" alt="logo sekolah" width="100px">
+                            <input type="file" name="file" class="form-control-file">
+                            <input type="hidden" name="oldfile" value="{{ $sekolah->logo }}">
                         </div>
                     </div>
                 </div>

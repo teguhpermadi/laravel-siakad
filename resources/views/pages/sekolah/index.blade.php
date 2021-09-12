@@ -153,8 +153,8 @@
                         Logo
                     </div>
                     <div class="col-md-8">
+                        <img src="{{ Storage::url("{$s->logo}") }}" alt="logo sekolah" width="100px">
 
-                        <img src="{{ $s->logo }}" alt="" height="100px">
                     </div>
                 </div>
             </div>
