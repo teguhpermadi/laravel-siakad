@@ -183,6 +183,7 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>
+                    <a href="{{ route('sekolah.index') }}" class="btn btn-secondary">Batal</a>
                 </div>
             </div>
         </form>

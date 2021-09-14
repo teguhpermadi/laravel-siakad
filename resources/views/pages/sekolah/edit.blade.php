@@ -7,8 +7,7 @@
     </div>
 
     <div class="section-body">
-        {{-- <form action="{{ route('sekolah.update', ['id' => $sekolah->id]) }}" method="PUT" enctype="multipart/form-data"> --}}
-            {!! Form::open(array('route' => ['sekolah.update', $sekolah->id], 'method' => 'put', 'files' => true )) !!}
+        <form action="{{ route('sekolah.update', ['id' => $sekolah->id]) }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -161,7 +160,7 @@
                             Website
                         </div>
                         <div class="col-md-8">
-                            <input type="url" name="website" class="form-control" value="{{ $sekolah->website }}">
+                            <input type="text" name="website" class="form-control" value="{{ $sekolah->website }}">
 
                         </div>
                     </div>
@@ -170,7 +169,7 @@
                             Logo
                         </div>
                         <div class="col-md-8">
-                            <img src="{{ Storage::url("{$sekolah->logo}") }}" alt="logo sekolah" width="100px">
+                            <img src="{{ Storage::url("{$sekolah->logo}") }}" alt="logo sekolah" width="100px" class="mb-3">
                             <input type="file" name="file" class="form-control-file">
                             <input type="hidden" name="oldfile" value="{{ $sekolah->logo }}">
                         </div>
@@ -181,8 +180,7 @@
                     <a class="btn btn-warning" href="{{ route('sekolah.index') }}">Batal</a>
                 </div>
             </div>
-        {{-- </form> --}}
-        {!! Form::close() !!}
+        </form>
     </div>
 </section>
 @endsection

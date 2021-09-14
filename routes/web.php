@@ -58,7 +58,8 @@ Route::group(['middleware' => ['permission:create profil sekolah|edit profil sek
         Route::get('/create', [ProfilSekolahController::class, 'create'])->name('sekolah.create');
         Route::get('/edit/{id}', [ProfilSekolahController::class, 'edit'])->name('sekolah.edit');
         Route::post('/store', [ProfilSekolahController::class, 'store'])->name('sekolah.store');
-        Route::put('/update/{id}', [ProfilSekolahController::class, 'update'])->name('sekolah.update');
+        Route::post('/update/{id}', [ProfilSekolahController::class, 'update'])->name('sekolah.update');
+        Route::post('/remove/{id}', [ProfilSekolahController::class, 'destroy'])->name('sekolah.remove');
     });
 });
 
