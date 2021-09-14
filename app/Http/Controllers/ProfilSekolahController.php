@@ -120,7 +120,7 @@ class ProfilSekolahController extends Controller
         // return redirect('file')->with('success', 'Data is successfully updated');
         // $post = ProfilSekolah::find($id)->update($input); 
         // //  setelah berhasil mengubah data
-        return redirect()->route('sekolah.index')->with('success','Post updated successfully');
+        return redirect()->route('sekolah.index')->with('success','Data updated successfully');
     }
 
     /**
@@ -133,6 +133,6 @@ class ProfilSekolahController extends Controller
     {
             $data = ProfilSekolah::find($id); 
             $data->delete();
-            return redirect()->route('sekolah.index')->with('success','Profil Sekolah deleted successfully');
+            return redirect()->route('sekolah.index')->with('success','Data deleted successfully');
     }
 }

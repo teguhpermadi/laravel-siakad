@@ -7,6 +7,11 @@
     </div>
 
     <div class="section-body">
+        @if (session()->has('success'))
+            <div class="alert alert-info" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
 
       @empty($sekolah)
         <div class="card mb-3">
@@ -162,7 +167,10 @@
             <div class="card-footer">
                 <a class="btn btn-warning" href="{{ route('sekolah.edit', $s->id) }}">Edit Profil Sekolah</a>
                 @can('remove profil sekolah')
-                    <a class="btn btn-danger" href="{{ route('sekolah.remove', $s->id) }}">Hapus Profil Sekolah</a>
+                    {!! Form::open(array('route' => ['sekolah.destroy', $s->id], 'method' => 'delete', 'class'=>'float-right' )) !!}
+                    @csrf
+                    <button class="btn btn-danger">Hapus</button>
+                    {!! Form::close() !!}
                 @endcan
             </div>
             @endcan

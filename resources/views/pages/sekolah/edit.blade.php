@@ -7,7 +7,8 @@
     </div>
 
     <div class="section-body">
-        <form action="{{ route('sekolah.update', ['id' => $sekolah->id]) }}" method="post" enctype="multipart/form-data">
+        {{-- <form action="{{ route('sekolah.update', ['id' => $sekolah->id]) }}" method="post" enctype="multipart/form-data"> --}}
+            {!! Form::open(array('route' => ['sekolah.update', $sekolah->id], 'method' => 'put', 'files' => true )) !!}
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -180,7 +181,9 @@
                     <a class="btn btn-warning" href="{{ route('sekolah.index') }}">Batal</a>
                 </div>
             </div>
-        </form>
+        {{-- </form> --}}
+        {!! Form::close() !!}
+
     </div>
 </section>
 @endsection
